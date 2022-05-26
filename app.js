@@ -12,11 +12,15 @@
 // <--using load Data callback and async await-->:
 const searchSong = async() => {
     const searchText = document.getElementById('search-field').value;
-    // console.log(searchText);
     const url = `https://api.lyrics.ovh/suggest/:${searchText}`
-    const response = await fetch(url);
-    const data = await response.json();
-    displaySongs(data.data);
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        displaySongs(data.data);
+    } catch (error) {
+        displayError('Sorry something word meaning please try again later!');
+    }
+
 };
 // <--Display all Song audio files preview artist and album title-->:
 const displaySongs = songs => {
@@ -55,13 +59,17 @@ const songLyrics = async(artist, title) => {
 //     const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
 //     fetch(url)
 //         .then(response => response.json)
-//         .then(data => displayLyrics(data.lyrics));
+//         .then(data => displayLyrics(data.lyrics))
+//         .catch(error => displayError(error))
 // };
 
 // <--Display Song Lyrics-->:
 const displayLyrics = lyrics => {
     const lyricsDiv = document.getElementById('song-lyrics');
-
     lyricsDiv.innerText = lyrics;
+}
 
+const displayError = error => {
+    const errorTags = document.getElementById('error-message');
+    errorTags.innerText = error;
 }

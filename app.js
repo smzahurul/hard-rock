@@ -9,7 +9,7 @@
 
 
 // <--Display all Song Search-->
-// <--using callback and async await-->:
+// <--using load Data callback and async await-->:
 const searchSong = async() => {
     const searchText = document.getElementById('search-field').value;
     // console.log(searchText);
@@ -41,7 +41,7 @@ const displaySongs = songs => {
     })
 };
 
-// <--using callback and async await-->:
+// <--using load Data callback and async await-->:
 // <--Display Song artist and album title-->:
 
 const songLyrics = async(artist, title) => {
